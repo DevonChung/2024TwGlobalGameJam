@@ -6,6 +6,7 @@ using UnityEngine;
 public class EndContent : ScriptableObject
 {
     public Sprite CG;
+    [TextArea(1,5)]
     public string[] content;
     public Queue<string> GetQueue()
     {

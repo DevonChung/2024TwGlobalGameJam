@@ -20,6 +20,7 @@ public class UIReadyGo : MonoBehaviour
     }
     public void StartReadyGo(float readyTime, float goTime)
     {
+        gameObject.SetActive(true);
         StartCoroutine(StartReadyGoCoroutine(readyTime, goTime));
     }
     IEnumerator StartReadyGoCoroutine(float readyTime,float goTime)
@@ -31,6 +32,7 @@ public class UIReadyGo : MonoBehaviour
         ReadyGoText.text = string.Empty;
         
         OnAfterReadyGo?.Invoke();
+        gameObject.SetActive(false);
     }
 
     

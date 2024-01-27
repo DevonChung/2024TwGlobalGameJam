@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIEndShower : UIShower
@@ -27,7 +28,7 @@ public class UIEndShower : UIShower
     }
     protected override void EndEnding()
     {
-        Debug.Log("Ending");
+        SceneManager.LoadScene("Title");
     }
     private void Start()
     {

@@ -36,6 +36,6 @@ public class UIResult : MonoBehaviour
     }
     public void Next()
     {
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene("EndScene");
     }
 }

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   CG: {fileID: 0}
-  content: []
+  content:
+  - "\u5973\u53CB\uFF1A\u6211\u5BB6\u73FE\u5728\u6C92\u4EBA\u3002"
+  - "\u4E3B\u89D2\uFF1A\u6211\u99AC\u4E0A\u904E\u53BB\uFF01"
