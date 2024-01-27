@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
+    protected int thousand_money_number = 0;
+
     public AudioManager audioManager;
     private Rigidbody2D rb;
     private BoxCollider2D collider;
@@ -16,6 +18,14 @@ public class PlayerControl : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         audioManager = AudioManager.instance;
+    }
+
+    public int get_thousand_money_number()
+    { return thousand_money_number; }
+
+    public void ResetThousandMoneyNumber()
+    {
+        thousand_money_number = 0;
     }
 
     // Update is called once per frame
@@ -54,6 +64,8 @@ public class PlayerControl : MonoBehaviour
     }
     void AddMoney() {
         print("GetMoney");
+        thousand_money_number++;
+        MyGameManager.instance.AddMoney(1000);
         // TODO
     }
     void CarCrash() {
@@ -81,7 +93,7 @@ public class PlayerControl : MonoBehaviour
         switch (collision.gameObject.tag) {
             case "Money":
                 AddMoney();
-                // Destroy(collision.gameObject);
+                 Destroy(collision.gameObject);
                 break;
             case "Car":
                 CarCrash();
