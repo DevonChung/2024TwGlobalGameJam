@@ -13,12 +13,13 @@ public class UIPanel : MonoBehaviour
     }
     public void SetTime(float time)
     {
-        int minute = ((int)time % 60);
-        int second = ((int)time / 60);
-        string min = minute.ToString(), sec= second.ToString();
-        if (second < 10) sec = "0" + sec;
-        if (minute < 10) min = "0" + min;
-        TimeText.text = $"{min}:{sec}";
+        //int minute = ((int)time % 60);
+        //int second = ((int)time / 60);
+        //string min = minute.ToString(), sec= second.ToString();
+        //if (second < 10) sec = "0" + sec;
+        //if (minute < 10) min = "0" + min;
+        //TimeText.text = $"{min}:{sec}";
+        TimeText.text = $"{Mathf.CeilToInt(time)}";
     }
     public void SetMoney(int money)
     {
