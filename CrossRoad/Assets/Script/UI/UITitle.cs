@@ -6,7 +6,7 @@ public class UITitle : MonoBehaviour
 {
     public void GameStart()
     {
-        //SceneManager.LoadScene("");
+        SceneManager.LoadScene("StartingAnimation");
     }
     public void Quit()
     {

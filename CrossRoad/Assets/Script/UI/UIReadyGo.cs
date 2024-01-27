@@ -8,7 +8,7 @@ public class UIReadyGo : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI ReadyGoText;
-    
+    int lerpPointsNumber = 100;
     UnityEvent OnAfterReadyGo;
     private void Awake()
     {
@@ -20,6 +20,7 @@ public class UIReadyGo : MonoBehaviour
     }
     public void StartReadyGo(float readyTime, float goTime)
     {
+        gameObject.SetActive(true);
         StartCoroutine(StartReadyGoCoroutine(readyTime, goTime));
     }
     IEnumerator StartReadyGoCoroutine(float readyTime,float goTime)
@@ -27,10 +28,17 @@ public class UIReadyGo : MonoBehaviour
         ReadyGoText.text = "Ready...";
         yield return new WaitForSecondsRealtime(readyTime);
         ReadyGoText.text = "GO!";
-        yield return new WaitForSecondsRealtime(goTime);
+        float currentAlpha = ReadyGoText.alpha;
+        for (int i = 0; i < lerpPointsNumber; i++)
+        {
+            ReadyGoText.alpha-= currentAlpha / lerpPointsNumber;
+            yield return new WaitForSecondsRealtime(goTime/lerpPointsNumber);
+        }
+        
         ReadyGoText.text = string.Empty;
         
         OnAfterReadyGo?.Invoke();
+        gameObject.SetActive(false);
     }
 
     

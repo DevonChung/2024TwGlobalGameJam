@@ -6,10 +6,8 @@ TagManager:
   tags:
   - Money
   - Car
-  - MoneyText
-  - ChaoPie
-  - Drug
-  - UFO
+  - Endline
+  - PoliceStation
   layers:
   - Default
   - TransparentFX
@@ -17,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstacle
-  - Road
-  - Special
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -46,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Building
+    uniqueID: 3882083439
+    locked: 0
+  - name: Items
+    uniqueID: 3992957957
+    locked: 0
+  - name: Player
+    uniqueID: 1878803297
     locked: 0
