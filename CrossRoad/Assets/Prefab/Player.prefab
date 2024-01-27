@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8024033878887426946}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  audioManager: {fileID: 0}
+  NotMyMoney: 0
 --- !u!50 &3889713712447552157
 Rigidbody2D:
   serializedVersion: 4
@@ -183,7 +185,7 @@ Animator:
   m_GameObject: {fileID: 4152062547925379955}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 26862a1658e6245ee9b20814b2d9d6eb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 67b8434f706874a239f688b6ba356a70, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
