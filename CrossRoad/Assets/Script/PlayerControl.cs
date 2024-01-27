@@ -48,10 +48,48 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    void SetAnimationParam(float xVelocity, float yVelocity)
+    {
+        if (yVelocity > 0)
+        {
+            anim.SetBool("Up", true);
+            anim.SetBool("Down", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("Right", false);
+            anim.SetBool("Idle", false);
+        }
+        else if (yVelocity < 0)
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("Down", true);
+            anim.SetBool("Left", false);
+            anim.SetBool("Right", false);
+            anim.SetBool("Idle", false);
+        }
+        else if (xVelocity > 0)
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("Right", true);
+            anim.SetBool("Idle", false);
+        }
+        else if (xVelocity < 0)
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("Left", true);
+            anim.SetBool("Right", false);
+            anim.SetBool("Idle", false);
+        }
+      
+    }
+
     void Move() {
         float xVelocity = Input.GetAxisRaw("Horizontal");
         float yVelocity = Input.GetAxisRaw("Vertical");
-        Vector2 direction = new Vector2(xVelocity, yVelocity);
+        SetAnimationParam(xVelocity, yVelocity);
+         Vector2 direction = new Vector2(xVelocity, yVelocity);
         rb.velocity = direction.normalized * moveSpeed;
     }
     IEnumerator ResetPlayer() {
