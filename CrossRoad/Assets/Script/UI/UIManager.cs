@@ -5,7 +5,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI TimeText,MoneyText;
+    TextMeshProUGUI TimeText,MoneyText,TextArea;
 
     public void SetTime(string time)
     {
@@ -27,5 +27,9 @@ public class UIManager : MonoBehaviour
     public void SetMoney(string money)
     {
         MoneyText.text=money;
+    }
+    public void SetText(string content)
+    {
+        TextArea.text = content;
     }
 }
