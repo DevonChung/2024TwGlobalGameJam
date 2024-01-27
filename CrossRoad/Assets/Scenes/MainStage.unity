@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8516bdb582bc934687879d013657701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 10
+  timeLeft: 90
   StartMoney: 1000
   StartPos: {fileID: 1637403658}
   myUIManager: {fileID: 776758307}
