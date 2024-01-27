@@ -57,8 +57,4 @@ public class UIManager : MonoBehaviour
     {
         readyGo.StartReadyGo(readyTime, goTime);
     }
-    public void test()
-    {
-        Debug.Log("start");
-    }
 }

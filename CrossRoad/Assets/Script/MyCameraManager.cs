@@ -47,7 +47,6 @@ using static UnityEngine.GraphicsBuffer;
     private void LateUpdate()
     {
         if (Hero != null) {
-
             
             transform.position = Hero.transform.position + posOffset;
             var v3 = transform.position;

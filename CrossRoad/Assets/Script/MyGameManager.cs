@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class MyGameManager : MonoBehaviour
 {
     public static MyGameManager instance;
-    public enum CrossRoadGameStatus { Paused, InGame};
+    public enum CrossRoadGameStatus { Paused, InGame, EndGame};
 
-    public float timeLeft = 90;
+    public float timeLeft = 90.0f;
     public int StartMoney = 1000;
     protected int CurrentMoney = 1000;
-    protected CrossRoadGameStatus currentState = CrossRoadGameStatus.Paused;
+    public CrossRoadGameStatus currentState = CrossRoadGameStatus.Paused;
     public GameObject StartPos;
     protected GameObject Hero;
+
+    public UIManager myUIManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        if (instance == null)
+        { 
+            instance = this;
+        }
+        updateUIInfo();
+        //currentState = CrossRoadGameStatus.Paused;
         currentState = CrossRoadGameStatus.Paused;
         Hero = GameObject.FindGameObjectWithTag("Player");
         if (StartPos != null)
@@ -28,14 +34,70 @@ public class MyGameManager : MonoBehaviour
         }
     }
 
+    public void ReachEndLine()
+    {
+        currentState = CrossRoadGameStatus.EndGame;
+        ShowResultUI();
+    }
+
+    public void StartGame()
+    {
+        currentState = CrossRoadGameStatus.InGame;
+    }
+
+    public void AddMoney(int amount)
+    {
+        CurrentMoney += amount;
+    }
+
+    public void LostMoney(int amount)
+    {
+        CurrentMoney -= amount;
+    }
+
+    protected void updateUIInfo()
+    {
+        if (myUIManager != null)
+        {
+            myUIManager.SetTime(timeLeft);
+            myUIManager.SetMoney(CurrentMoney);
+        }
+    }
+
+    public void ShowResultUI()
+    {
+        myUIManager.ShowResult(timeLeft, CurrentMoney);
+    }
+
+    protected void CheckNoTimeEvent()
+    {
+        if (timeLeft <= 0)
+        {
+            currentState = CrossRoadGameStatus.EndGame;
+            myUIManager.SetText("Time is over");
+            ShowResultUI();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    public void AddMoney(int money)
-    {
-        CurrentMoney += money;
-        GameObject.FindGameObjectWithTag("MoneyText").GetComponent<TMP_Text>().text = CurrentMoney.ToString();
+        if (currentState == CrossRoadGameStatus.InGame)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+            }
+            else
+            {
+                timeLeft = 0;
+            }
+
+            updateUIInfo();
+            CheckNoTimeEvent();
+
+
+
+        }
     }
 }
