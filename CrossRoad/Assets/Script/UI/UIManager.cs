@@ -1,35 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI TimeText,MoneyText,TextArea;
+    UIPanel panel;
+    [SerializeField]
+    UIResult result;
 
+    private void Awake()
+    {
+        result.gameObject.SetActive(false);
+    }
     public void SetTime(string time)
     {
-        TimeText.text=time;
+        panel.SetTime(time);
     }
     public void SetTime(float time)
     {
-        int minute = ((int)time % 60);
-        int second = ((int)time / 60);
-        string min = minute.ToString(), sec= second.ToString();
-        if (second < 10) sec = "0" + sec;
-        if (minute < 10) min = "0" + min;
-        TimeText.text = $"{min}:{sec}";
+        panel.SetTime(time);
     }
     public void SetMoney(int money)
     {
-        MoneyText.text=money.ToString();
+        panel.SetMoney(money);
     }
     public void SetMoney(string money)
     {
-        MoneyText.text=money;
+        panel.SetMoney(money);
     }
     public void SetText(string content)
     {
-        TextArea.text = content;
+        panel.SetText(content);
+    }
+    public void ShowResult(float time, int money)
+    {
+        result.gameObject.SetActive(true);
+        result.ShowResult(time,money);
     }
 }

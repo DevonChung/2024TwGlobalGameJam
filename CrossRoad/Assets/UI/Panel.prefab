@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 4279895067475143627}
   - component: {fileID: 5927086300197538287}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 2076895468835090170}
   - component: {fileID: 3819944067629395734}
   - component: {fileID: 8419747898000763653}
-  - component: {fileID: 5968679088359016146}
+  - component: {fileID: 5192048980425706668}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5968679088359016146
+--- !u!114 &5192048980425706668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
