@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -10,16 +11,20 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D collider;
     private Animator anim;
+    private Tilemap tilemap;
     private bool movable = true;
     private bool isdrug = false;
     private bool isUFO = false;
     private bool isChaoPie = false;
+    private float ACComming = 0.0f; // over 10 sec will get a AC
+    private string currentTile = "None";
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         audioManager = AudioManager.instance;
+        tilemap = GameObject.FindGameObjectWithTag("Special").GetComponent<Tilemap>();
     }
 
     // Update is called once per frame
@@ -27,6 +32,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (movable)
             Move();
+        currentTile = CheckStandOn();
+        
     }
     void Move() {
         float xVelocity = Input.GetAxisRaw("Horizontal");
@@ -41,6 +48,48 @@ public class PlayerControl : MonoBehaviour
         if (isUFO) {
             rb.velocity *= 0.5f;
         }
+    }
+    string CheckStandOn() {
+        RaycastHit2D hit;
+        Vector2 rayOrigin = transform.position; // 车子的中心位置
+        Vector2 rayDirection = Vector2.up; // 假设射线向前
+        int layerMask = LayerMask.GetMask("Special"); // 只包含 "Turn" 层的 LayerMask
+        hit = Physics2D.Raycast(rayOrigin, rayDirection, 0.001f, layerMask);
+
+        if (hit.collider != null)
+        {
+            print("hit" + hit.collider.gameObject.name);
+            // 检测到的是 "Turn" 层上的对象
+            if (hit.collider.gameObject.GetComponent<Tilemap>() != null)
+            {
+                Vector3Int cellPosition = tilemap.WorldToCell(hit.point);
+
+                // 获取相应位置的 Tile
+                TileBase tile = tilemap.GetTile(cellPosition);
+                string tileType = "None"
+                if (tile == null) return tileType;
+                tileType = tile.name;
+                return tileType;
+            }
+        }
+    }
+    void CheckAC() {
+        if (currentTile == "sidewalk") {
+            ACComming += Time.deltaTime;
+            if (ACComming > 10.0f) {
+                ACFall();
+                ACComming = 0.0f;
+            }
+        }
+        else {
+            ACComming -= Time.deltaTime;
+        }
+    }
+    void ACFall() {
+        print("ACFall");
+        GameObject AC = Instantiate(Resources.Load("Prefabs/AC")) as GameObject;
+        AC.transform.position = transform.position;
+        CarCrash();
     }
     IEnumerator ResetPlayer() {
         // wait until the animation is finished
@@ -79,6 +128,10 @@ public class PlayerControl : MonoBehaviour
     }
     void CarCrash() {
         print("CarCrash");
+        MyGameManager.instance.AddMoney(-20);
+        if (currentTile == "Crosswalk") {
+            MyGameManager.instance.AddMoney(+30);
+        }
         collider.isTrigger = true;
         movable = false;
         rb.velocity = Vector2.zero;
