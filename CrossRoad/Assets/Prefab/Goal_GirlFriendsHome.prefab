@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -412883857
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1599567db7da90c43ac3bc883b45a52a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8705f088a2a73b049aa6949a66b43ceb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.58, y: 1.58}
+    oldSize: {x: 6.831114, y: 5.12}
     newSize: {x: 1.58, y: 1.58}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -146,6 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FinePrice: 1000
   RewardPrice: 900
+  ReturnMoneyMessage: "\u570B\u5BB6\u611F\u8B1D\u4F60\u7684\u8AA0\u5BE6"
+  StealMoneyMessage: "\u6697\u625B\u9322 \u52A0\u500D\u6263\u9322"
 --- !u!1001 &7988935096088851362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,13 +160,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndLine
       objectReference: {fileID: 0}
-    - target: {fileID: 7651408916697053308, guid: 12a09af2df117bb41b9191fd108ada20, type: 3}
-      propertyPath: m_LocalPosition.x
+    - target: {fileID: 2092787471092905415, guid: 12a09af2df117bb41b9191fd108ada20, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7651408916697053308, guid: 12a09af2df117bb41b9191fd108ada20, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651408916697053308, guid: 12a09af2df117bb41b9191fd108ada20, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -0.64
       objectReference: {fileID: 0}
     - target: {fileID: 7651408916697053308, guid: 12a09af2df117bb41b9191fd108ada20, type: 3}
       propertyPath: m_LocalPosition.z

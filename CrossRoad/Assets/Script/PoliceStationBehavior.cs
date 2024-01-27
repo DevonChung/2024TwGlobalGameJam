@@ -6,6 +6,8 @@ public class PoliceStationBehavior : MonoBehaviour
 {
     public int FinePrice = 1000;
     public int RewardPrice = 900;
+    public string ReturnMoneyMessage = "國家感謝你的誠實";
+    public string StealMoneyMessage = "暗扛錢 加倍扣錢";
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,7 @@ public class PoliceStationBehavior : MonoBehaviour
             {
                 MinusPlayerMoney(playerControl.get_thousand_money_number() * RewardPrice);
                 playerControl.ResetThousandMoneyNumber();
+                MyGameManager.instance.myUIManager.SetText(ReturnMoneyMessage);
             }
         }
     }
@@ -55,6 +58,7 @@ public class PoliceStationBehavior : MonoBehaviour
             {
                 MinusPlayerMoney(playerControl.get_thousand_money_number() * FinePrice);
                 playerControl.ResetThousandMoneyNumber();
+                MyGameManager.instance.myUIManager.SetText(StealMoneyMessage);
             }
         }
     }
