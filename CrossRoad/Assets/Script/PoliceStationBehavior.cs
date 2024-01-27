@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoliceStationBehavior : MonoBehaviour
 {
-    public int FinePrice = 1000;
+    public int FinePrice = 2000;
     public int RewardPrice = 900;
     public string ReturnMoneyMessage = "國家感謝你的誠實";
     public string StealMoneyMessage = "暗扛錢 加倍扣錢";
@@ -16,6 +16,7 @@ public class PoliceStationBehavior : MonoBehaviour
 
     void MinusPlayerMoney(int amount)
     {
+        Debug.Log("Lost money amout is" + amount);
         MyGameManager.instance.LostMoney(amount);
     }
 
@@ -57,6 +58,7 @@ public class PoliceStationBehavior : MonoBehaviour
             if (checkPlayerHasHoldMoney(playerControl) == true)
             {
                 MinusPlayerMoney(playerControl.get_thousand_money_number() * FinePrice);
+                Debug.Log("detect trigger collision: check "+ playerControl.get_thousand_money_number());
                 playerControl.ResetThousandMoneyNumber();
                 MyGameManager.instance.myUIManager.SetText(StealMoneyMessage);
             }

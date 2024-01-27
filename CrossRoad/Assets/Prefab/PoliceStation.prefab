@@ -143,8 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c885c891de5a78d409998c448f43c27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FinePrice: 1000
+  FinePrice: 2000
   RewardPrice: 900
+  ReturnMoneyMessage: "\u570B\u5BB6\u611F\u8B1D\u4F60\u7684\u8AA0\u5BE6"
+  StealMoneyMessage: "\u6697\u625B\u9322 \u52A0\u500D\u6263\u9322"
 --- !u!1 &2138461922142793939
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,5 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c885c891de5a78d409998c448f43c27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FinePrice: 1000
+  FinePrice: 2000
   RewardPrice: 900
+  ReturnMoneyMessage: "\u570B\u5BB6\u611F\u8B1D\u4F60\u7684\u8AA0\u5BE6"
+  StealMoneyMessage: "\u6697\u625B\u9322 \u52A0\u500D\u6263\u9322"
