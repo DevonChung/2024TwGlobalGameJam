@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class MyGameManager : MonoBehaviour
 {
+    public static MyGameManager instance;
     public enum CrossRoadGameStatus { Paused, InGame, EndGame};
 
     public float timeLeft = 90.0f;
     public int StartMoney = 1000;
-    protected int CurrentMony = 1000;
-    protected CrossRoadGameStatus currentState = CrossRoadGameStatus.Paused;
+    protected int CurrentMoney = 1000;
+    public CrossRoadGameStatus currentState = CrossRoadGameStatus.Paused;
     public GameObject StartPos;
     protected GameObject Hero;
 
@@ -19,12 +20,62 @@ public class MyGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        { 
+            instance = this;
+        }
+        updateUIInfo();
         //currentState = CrossRoadGameStatus.Paused;
-        currentState = CrossRoadGameStatus.InGame;
+        currentState = CrossRoadGameStatus.Paused;
         Hero = GameObject.FindGameObjectWithTag("Player");
         if (StartPos != null)
         { 
             Hero.transform.position = StartPos.transform.position;
+        }
+    }
+
+    public void ReachEndLine()
+    {
+        currentState = CrossRoadGameStatus.EndGame;
+        ShowResultUI();
+    }
+
+    public void StartGame()
+    {
+        currentState = CrossRoadGameStatus.InGame;
+    }
+
+    public void AddMoney(int amount)
+    {
+        CurrentMoney += amount;
+    }
+
+    public void LostMoney(int amount)
+    {
+        CurrentMoney -= amount;
+    }
+
+    protected void updateUIInfo()
+    {
+        if (myUIManager != null)
+        {
+            myUIManager.SetTime(timeLeft);
+            myUIManager.SetMoney(CurrentMoney);
+        }
+    }
+
+    public void ShowResultUI()
+    {
+        myUIManager.ShowResult(timeLeft, CurrentMoney);
+    }
+
+    protected void CheckNoTimeEvent()
+    {
+        if (timeLeft <= 0)
+        {
+            currentState = CrossRoadGameStatus.EndGame;
+            myUIManager.SetText("Time is over");
+            ShowResultUI();
         }
     }
 
@@ -41,16 +92,11 @@ public class MyGameManager : MonoBehaviour
             {
                 timeLeft = 0;
             }
-            if (myUIManager != null)
-            {
-                myUIManager.SetTime(timeLeft);
-            }
 
-            if (timeLeft <= 0 )
-            {
-                currentState = CrossRoadGameStatus.EndGame;
-                myUIManager.SetText("Time is over");
-            }
+            updateUIInfo();
+            CheckNoTimeEvent();
+
+
 
         }
     }

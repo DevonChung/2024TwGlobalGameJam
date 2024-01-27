@@ -21,9 +21,23 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (movable)
+        if (CanMoveNow())
             Move();
     }
+
+    bool CanMoveNow()
+    {
+        if (MyGameManager.instance.currentState == MyGameManager.CrossRoadGameStatus.InGame)
+        {
+            return movable;
+        }
+        else 
+        {
+            rb.velocity = new Vector2(0,0);
+            return false;
+        }
+    }
+
     void Move() {
         float xVelocity = Input.GetAxisRaw("Horizontal");
         float yVelocity = Input.GetAxisRaw("Vertical");
@@ -53,6 +67,16 @@ public class PlayerControl : MonoBehaviour
         StartCoroutine(ResetPlayer());
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Endline":
+                MyGameManager.instance.ReachEndLine();
+                break;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision) {
         switch (collision.gameObject.tag) {
             case "Money":
@@ -62,7 +86,7 @@ public class PlayerControl : MonoBehaviour
             case "Car":
                 CarCrash();
                 break;
-
+            
             default:
                 break;
         }
