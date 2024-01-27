@@ -8,15 +8,21 @@ public class UIShower : MonoBehaviour
     [SerializeField]
     protected Image cg;
     [SerializeField]
-    protected TextMeshProUGUI text;
-    protected Queue<string> plots;
+    protected TextMeshProUGUI contentText,nameText;
+    [SerializeField]
+    protected float typeSpeed=10f;
+    protected Queue<Dialog> plots;
+
     protected bool isShowingCG = false;
+    protected bool isTyping = false;
+    protected Dialog typingPlot;
     protected void Update()
     {
         if (!isShowingCG) return;
         if (Input.GetMouseButtonDown(0))
         {
-            ShowNextScentence();
+            if (!isTyping) ShowNextScentence();
+            else ShowAllText();
         }
     }
     protected void ShowPlots(EndContent content)
@@ -29,15 +35,32 @@ public class UIShower : MonoBehaviour
     {
         if (plots.Count > 0)
         {
-            string plot = plots.Dequeue();
-            text.text = plot;
+            typingPlot = plots.Dequeue();
+            nameText.text = typingPlot._name;
+            StartCoroutine(TypingWords(typingPlot.scentence));
         }
         else
         {
             isShowingCG=false;
             EndEnding();
         }
-
+    }
+    protected void ShowAllText()
+    {
+        StopAllCoroutines();
+        contentText.text = typingPlot.scentence;
+        isTyping=false;
+    }
+    protected IEnumerator TypingWords(string words)
+    {
+        isTyping = true;
+        contentText.text = string.Empty;
+        foreach(var word in words)
+        {
+            contentText.text += word;
+            yield return new WaitForSecondsRealtime(1/typeSpeed);
+        }
+        isTyping = false;
     }
     protected virtual void EndEnding()
     {

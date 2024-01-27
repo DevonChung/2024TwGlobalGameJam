@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CG: {fileID: 0}
   content:
-  - "\u5973\u53CB\uFF1A\u6211\u5BB6\u73FE\u5728\u6C92\u4EBA\u3002"
-  - "\u4E3B\u89D2\uFF1A\u6211\u99AC\u4E0A\u904E\u53BB\uFF01"
+  - _name: "\u5C0F\u7F8E"
+    scentence: "\u4ECA\u5929\u6211\u7238\u5ABD\u4E0D\u5728\u5BB6\u3002\r"
+  - _name: "\u5C0F\u5E25"
+    scentence: "\uFF01\uFF01\uFF01\uFF0C\u6211\u99AC\u4E0A\u904E\u53BB\uFF01"

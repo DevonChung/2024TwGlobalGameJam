@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,22 @@ using UnityEngine;
 public class EndContent : ScriptableObject
 {
     public Sprite CG;
-    [TextArea(1,5)]
-    public string[] content;
-    public Queue<string> GetQueue()
+    
+    public Dialog[] content;
+    public Queue<Dialog> GetQueue()
     {
-        Queue<string> output=new();
-        foreach (string item in content)
+        Queue<Dialog> output=new();
+        foreach (var item in content)
         {
             output.Enqueue(item);
         }
         return output;
     }
+}
+[Serializable]
+public class Dialog
+{
+    public string _name;
+    [TextArea(1, 3)]
+    public string scentence;
 }
