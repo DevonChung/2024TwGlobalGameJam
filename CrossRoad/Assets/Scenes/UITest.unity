@@ -246,8 +246,8 @@ MonoBehaviour:
   OnAfterReadyGo:
     m_PersistentCalls:
       m_Calls: []
-  readyTime: 2
-  goTime: 0.3
+  readyTime: 0
+  goTime: 0
 --- !u!224 &553973349 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2076895468835090170, guid: 37f7d2b6df2a934498276fb2c7679a9e, type: 3}
