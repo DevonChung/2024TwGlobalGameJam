@@ -8,6 +8,13 @@ TagManager:
   - Car
   - Endline
   - PoliceStation
+  - Special
+  - Turn
+  - UFO
+  - ChaoPie
+  - Drug
+  - Shoe
+  - Joystick
   layers:
   - Default
   - TransparentFX
@@ -15,9 +22,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Special
+  - Turn
+  - Car
   - 
   - 
   - 

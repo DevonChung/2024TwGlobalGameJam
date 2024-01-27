@@ -6,25 +6,46 @@ public class CarControl : MonoBehaviour
 {
 
     public float moveSpeed = 3.0f;
-    public float liveTime = 30.0f;
+    public float maxMoveSpeed = 5.0f;
+    public float minMoveSpeed = 1.0f;
+    public float meanMoveSpeed = 2.0f;
+    public float sigmaMoveSpeed = 5.0f;
+    public float resetSpeedTime = 3.0f;
+    public float maxResetSpeedTime = 6.0f;
+    public float minResetSpeedTime = 0.0f;
+    public float meanResetSpeedTime = 3.0f;
+    public float sigmaResetSpeedTime = 5.0f;
+    public float liveTime = 10.0f;
     public Vector3 direction = Vector3.right;
     public Tilemap tilemap;
-    
+
     // Update is called once per frame
     void Start()
     {
+        moveSpeed = RandomGaussian(minMoveSpeed, maxMoveSpeed, meanMoveSpeed, sigmaMoveSpeed);
+        resetSpeedTime = RandomGaussian(minResetSpeedTime, maxResetSpeedTime, meanResetSpeedTime, sigmaResetSpeedTime);
         tilemap = GameObject.FindGameObjectWithTag("Turn").GetComponent<Tilemap>();
     }
     void FixedUpdate()
     {
+        if (resetSpeedTime > 0)
+        {
+            resetSpeedTime -= Time.deltaTime;
+        }
+        else
+        {
+            moveSpeed = RandomGaussian(minMoveSpeed, maxMoveSpeed, meanMoveSpeed, sigmaMoveSpeed);
+            resetSpeedTime = RandomGaussian(minResetSpeedTime, maxResetSpeedTime, meanResetSpeedTime, sigmaResetSpeedTime);
+        }
         CheckTurn();
         Move();
-        
+
     }
-    void CheckTurn() {
+    void CheckTurn()
+    {
         // Check road if there is a turn
         // If there is a turn, turn the car
-        
+
         RaycastHit2D hit;
         Vector2 rayOrigin = transform.position; // 车子的中心位置
         Vector2 rayDirection = Vector2.right; // 假设射线向前
@@ -42,22 +63,27 @@ public class CarControl : MonoBehaviour
                 TileBase tile = tilemap.GetTile(cellPosition);
                 if (tile == null) return;
                 string tileType = tile.name;
+                print(gameObject.name + " hit " + tileType);
                 switch (tileType)
                 {
-                    case "turn_left":
-                        direction = Vector3.up;
+                    case "go_up":
+                        StartCoroutine(Turn(Vector3.up));
+                        // direction = Vector3.up;
                         break;
-                    case "turn_right":
-                        direction = Vector3.down;
+                    case "go_down":
+                        StartCoroutine(Turn(Vector3.down));
+                        // direction = Vector3.down;
                         break;
-                    case "turn_up":
-                        direction = Vector3.left;
+                    case "go_left":
+                        StartCoroutine(Turn(Vector3.left));
+                        // direction = Vector3.left;
                         break;
-                    case "turn_down":
-                        direction = Vector3.right;
+                    case "go_right":
+                        StartCoroutine(Turn(Vector3.right));
+                        // direction = Vector3.right;
                         break;
                     case "turn_up_or_left":
-                        if (Random.RangeInt(0, 2) == 0)
+                        if (Random.Range(0, 2) == 0)
                         {
                             direction = Vector3.left;
                         }
@@ -71,6 +97,11 @@ public class CarControl : MonoBehaviour
                 }
             }
         }
+    }
+    IEnumerator Turn(Vector3 targetDirection)
+    {
+        yield return new WaitForSeconds(0.5f / moveSpeed);
+        direction = targetDirection;
     }
     void DetectTileAtPosition(Vector3 worldPosition)
     {
@@ -90,12 +121,34 @@ public class CarControl : MonoBehaviour
             // 根据 tileType 进行更多的处理...
         }
     }
-    void Move() {
-        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+    void Move()
+    {
+        transform.Translate(direction * Time.deltaTime * moveSpeed);
         liveTime -= Time.deltaTime;
         if (liveTime <= 0)
         {
             Destroy(gameObject);
         }
+    }
+    public static float RandomGaussian(float minValue = 0.0f, float maxValue = 1.0f, float mean = 0.0f, float sigma = 1.0f)
+    {
+        float u, v, S;
+
+        do
+        {
+            u = 2.0f * UnityEngine.Random.value - 1.0f;
+            v = 2.0f * UnityEngine.Random.value - 1.0f;
+            S = u * u + v * v;
+        }
+        while (S >= 1.0f);
+
+        // Standard Normal Distribution
+        float std = u * Mathf.Sqrt(-2.0f * Mathf.Log(S) / S);
+
+        // Normal Distribution centered between the min and max value
+        // and clamped following the "three-sigma rule"
+        // float mean = (minValue + maxValue) / 2.0f;
+        // float sigma = (maxValue - mean) / 3.0f;
+        return Mathf.Clamp(std * sigma + mean, minValue, maxValue);
     }
 }

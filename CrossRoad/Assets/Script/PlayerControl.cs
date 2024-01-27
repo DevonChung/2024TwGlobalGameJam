@@ -1,31 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class PlayerControl : MonoBehaviour
 {
+    public float debug_center_y = 1.5f;
     public float moveSpeed = 5.0f;
+    public float crashTime = 1.5f;
     protected int thousand_money_number = 0;
 
+    public GameObject ACPrefab;
     public AudioManager audioManager;
     private Rigidbody2D rb;
-    private BoxCollider2D collider;
+    private BoxCollider2D collid;
     private Animator anim;
     private Tilemap tilemap;
-    private bool movable = true;
+    private Joystick jsMovement;
+    private bool iscrash = false;
     private bool isChaoPie = false;
     private float ACComming = 0.0f; // over 10 sec will get a AC
     private string currentTile = "None";
     private bool isdrug = false;
     private bool isUFO = false;
+    private bool isShoe = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
+        collid = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         audioManager = AudioManager.instance;
         tilemap = GameObject.FindGameObjectWithTag("Special").GetComponent<Tilemap>();
+        jsMovement = GameObject.FindGameObjectWithTag("Joystick").GetComponentInChildren<Joystick>();
     }
 
     public int get_thousand_money_number()
@@ -42,18 +49,19 @@ public class PlayerControl : MonoBehaviour
         if (CanMoveNow())
             Move();
         currentTile = CheckStandOn();
-        
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Car"), iscrash);
+        CheckAC();
     }
 
     bool CanMoveNow()
     {
         if (MyGameManager.instance.currentState == MyGameManager.CrossRoadGameStatus.InGame)
         {
-            return movable;
+            return true;
         }
-        else 
+        else
         {
-            rb.velocity = new Vector2(0,0);
+            rb.velocity = new Vector2(0, 0);
             return false;
         }
     }
@@ -92,19 +100,63 @@ public class PlayerControl : MonoBehaviour
             anim.SetBool("Right", false);
             anim.SetBool("Idle", false);
         }
-      
+
     }
 
-    void Move() {
-        float xVelocity = Input.GetAxisRaw("Horizontal");
-        float yVelocity = Input.GetAxisRaw("Vertical");
-        SetAnimationParam(xVelocity, yVelocity);
-         Vector2 direction = new Vector2(xVelocity, yVelocity);
-        rb.velocity = direction.normalized * moveSpeed;
+    void MoveInput() {
+        Vector2 direction = Vector2.zero;
+
+        if(Input.touchCount > 0 || Input.GetMouseButton(0))
+        {
+            // InputDirection can be used as per the need of your project
+            direction = jsMovement.InputDirection;
+        }
+        else 
+        {
+            float xVelocity = Input.GetAxisRaw("Horizontal");
+            float yVelocity = Input.GetAxisRaw("Vertical");
+            direction = new Vector2(xVelocity, yVelocity);
+        }
     }
-    string CheckStandOn() {
+    void Move()
+    {
+        
+        float xVelocity;
+        float yVelocity;
+        if(Input.touchCount > 0 || Input.GetMouseButton(0))
+        {
+            // InputDirection can be used as per the need of your project
+            xVelocity = jsMovement.InputDirection.x;
+            yVelocity = jsMovement.InputDirection.y;
+        }
+        else 
+        {
+            xVelocity = Input.GetAxisRaw("Horizontal");
+            yVelocity = Input.GetAxisRaw("Vertical");
+        }
+        SetAnimationParam(xVelocity, yVelocity);
+        if(isdrug) {
+            xVelocity = -xVelocity;
+            yVelocity = -yVelocity;
+        }
+        Vector2 direction = new Vector2(xVelocity, yVelocity);
+        rb.velocity = direction.normalized * moveSpeed;
+        if (iscrash)
+        {
+            rb.velocity *= 0.2f;
+        }
+        if (isUFO)
+        {
+            rb.velocity *= 0.5f;
+        }
+        if (isShoe) {
+            rb.velocity *= 2.0f;
+        }
+    }
+    string CheckStandOn()
+    {
         RaycastHit2D hit;
-        Vector2 rayOrigin = transform.position; // 车子的中心位置
+        Vector2 rayOrigin = transform.position + new Vector3(0.0f, 0.5f); // 车子的中心位置
         Vector2 rayDirection = Vector2.up; // 假设射线向前
         int layerMask = LayerMask.GetMask("Special"); // 只包含 "Turn" 层的 LayerMask
         hit = Physics2D.Raycast(rayOrigin, rayDirection, 0.001f, layerMask);
@@ -119,59 +171,152 @@ public class PlayerControl : MonoBehaviour
 
                 // 获取相应位置的 Tile
                 TileBase tile = tilemap.GetTile(cellPosition);
-                string tileType = "None"
-                if (tile == null) return tileType;
-                tileType = tile.name;
-                return tileType;
+                if (tile != null)
+                    return tile.name;
             }
         }
+        return "None";
     }
-    void CheckAC() {
-        if (currentTile == "sidewalk") {
+    void CheckAC()
+    {
+        if (currentTile == "sidewalk")
+        {
             ACComming += Time.deltaTime;
-            if (ACComming > 10.0f) {
+            if (ACComming > 10.0f)
+            {
                 ACFall();
                 ACComming = 0.0f;
             }
         }
-        else {
-            ACComming -= Time.deltaTime;
+        else
+        {
+            if (ACComming > 0.0f)
+                ACComming -= Time.deltaTime * 0.5f;
+            else
+                ACComming = 0.0f;
         }
     }
-    void ACFall() {
+    void ACFall()
+    {
+        
         print("ACFall");
-        GameObject AC = Instantiate(Resources.Load("Prefabs/AC")) as GameObject;
-        AC.transform.position = transform.position;
-        CarCrash();
+        GameObject AC = Instantiate(ACPrefab, transform);
+        AC.transform.localPosition = new Vector3(0, 9, -10);
+        AC.transform.localScale = new Vector3(2, 2, 2);
+        StartCoroutine(ACFalling(AC));
+        
+        
     }
-    IEnumerator ResetPlayer() {
-        // wait until the animation is finished
-        print(anim.GetCurrentAnimatorStateInfo(0));
-        float animationLength = anim.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(animationLength);
-        collider.isTrigger = false;
-        movable = true;
+    IEnumerator ACFalling(GameObject AC) {
+        float duration = 2.0f;
+        while(AC.transform.localPosition.y > 3.0f) {
+            float dy = 6.0f / duration * Time.deltaTime;
+            AC.transform.localPosition -= new Vector3(0, dy, 0);
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(AC);
+        AudioManager.instance.PlayCrashAudio();
+        MyGameManager.instance.AddMoney(-50);
+        StartCoroutine(PlayerCrashed());
     }
-    void AddMoney() {
+
+
+    void AddMoney()
+    {
         print("GetMoney");
         thousand_money_number++;
         MyGameManager.instance.AddMoney(1000);
         // TODO
     }
-    void CarCrash() {
+    IEnumerator ResetPlayer(string status, float duration) {
+        print("ResetBuff");
+        yield return new WaitForSeconds(duration);
+        print("status: " + status);
+        switch (status) {
+            case "crash":
+                iscrash = false;
+                break;
+            case "isdrug":
+                isdrug = false;
+                break;
+            case "isUFO":
+                isUFO = false;
+                break;
+            case "isShoe":
+                isShoe = false;
+                break;
+            case "isChaoPie":
+                isChaoPie = false;
+                break;
+            default:
+                break;
+        }
+    }
+    void CarCrash()
+    {
         print("CarCrash");
         MyGameManager.instance.AddMoney(-20);
-        if (currentTile == "Crosswalk") {
+        if (currentTile == "crosswalk1" || currentTile == "crosswalk2")
+        {
             MyGameManager.instance.AddMoney(+30);
         }
         // TODO
-        collider.isTrigger = true;
-        movable = false;
+        iscrash = true;
         rb.velocity = Vector2.zero;
-        anim.SetTrigger("Crash");
+        anim.SetBool("Crash", true);
         audioManager.PlayCrashAudio();
-        StartCoroutine(ResetPlayer());
-
+        StartCoroutine(PlayerCrashed());
+        StartCoroutine(ResetPlayer("crash", crashTime));
+    }
+    IEnumerator PlayerCrashed()
+    {
+        float time = 0.0f;
+        while (time < crashTime)
+        {
+            // using sine function to make the sprite blink from 1 to 0.2
+            float alpha = Mathf.Sin((time * 36.0f + 90.0f) / math.PI) * 0.4f + 0.6f;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, alpha);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+    }
+    
+    void drug() {
+        print("drug");
+        isdrug = true;
+        StartCoroutine(ResetPlayer("isdrug", 5.0f));
+    }
+    void UFO() {
+        print("UFO");
+        isUFO = true;
+        StartCoroutine(ResetPlayer("isUFO", 5.0f));
+    }
+    void Shoe() {
+        print("Shoe");
+        isShoe = true;
+        StartCoroutine(ResetPlayer("isShoe", 5.0f));
+    }
+    void ChaoPie() {
+        print("ChaoPie");
+        isChaoPie = true;
+        StartCoroutine(ResetPlayer("isChaoPie", 5.0f));
+    }
+    IEnumerator flyAway(Vector2 direction, GameObject obj) {
+        // move the object away (object with rigidbody)
+        while (obj.transform.position.x > -10 && obj.transform.position.x < 10) {
+            obj.transform.position += (Vector3)direction * 50.0f * Time.deltaTime;
+            obj.transform.Rotate(0, 0, 10.0f);
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(obj);
+    }
+    void ChaoPiePunch(GameObject obj) {
+        // make the object fly away
+        audioManager.PlayCrashAudio();
+        obj.GetComponent<BoxCollider2D>().enabled = false;
+        Vector2 direction = obj.transform.position - transform.position;
+        StartCoroutine(flyAway(direction, obj));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -183,18 +328,46 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        // Items
         switch (collision.gameObject.tag) {
             case "Money":
                 AddMoney();
-                 Destroy(collision.gameObject);
-                break;
-            case "Car":
-                CarCrash();
-                break;
-            
+                Destroy(collision.gameObject);
+                return;
+            case "Drug":
+                drug();
+                Destroy(collision.gameObject);
+                return;
+            case "UFO":
+                UFO();
+                Destroy(collision.gameObject);
+                return;
+            case "Shoe":
+                Shoe();
+                Destroy(collision.gameObject);
+                return;
+            case "ChaoPie":
+                ChaoPie();
+                Destroy(collision.gameObject);
+                return;
             default:
                 break;
+        }
+        if (isChaoPie) {
+            ChaoPiePunch(collision.gameObject);
+        }
+        else {
+            // Obstacles
+            switch (collision.gameObject.tag) {
+                case "Car":
+                    CarCrash();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
