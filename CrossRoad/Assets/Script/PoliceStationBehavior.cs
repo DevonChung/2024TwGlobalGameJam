@@ -46,6 +46,7 @@ public class PoliceStationBehavior : MonoBehaviour
                 playerControl.ResetThousandMoneyNumber();
                 MyGameManager.instance.myUIManager.SetText(ReturnMoneyMessage);
                 AudioManager.instance.PlayPoliceStationAudio();
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
             }
         }
     }
@@ -62,6 +63,7 @@ public class PoliceStationBehavior : MonoBehaviour
                 Debug.Log("detect trigger collision: check "+ playerControl.get_thousand_money_number());
                 playerControl.ResetThousandMoneyNumber();
                 MyGameManager.instance.myUIManager.SetText(StealMoneyMessage);
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
             }
         }
     }

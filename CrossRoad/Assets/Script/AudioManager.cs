@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public GameObject TimeOutAudio;
     public GameObject WinAudio;
     public GameObject ShoeAudio;
+    public GameObject SuperPieAudio;
 
     void Awake()
     {
@@ -118,6 +119,12 @@ public class AudioManager : MonoBehaviour
     public GameObject PlayShoeAudio()
     {
         GameObject audioObj = Instantiate(ShoeAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
+        return audioObj;
+    }
+    public GameObject PlaySuperPieAudio()
+    {
+        GameObject audioObj = Instantiate(SuperPieAudio, transform);
         audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }

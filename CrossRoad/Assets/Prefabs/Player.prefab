@@ -121,7 +121,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &3419017444826227107
 MonoBehaviour:
@@ -248,3 +248,4 @@ MonoBehaviour:
   ShoeObject: {fileID: 2950793645922354387, guid: d967a99504048b24cbef553a35022f32, type: 3}
   DrugObject: {fileID: 4252290953937458245, guid: 6b5066cbd6f43e04e86e92c8dd524569, type: 3}
   UFOObject: {fileID: 319010760899936994, guid: f44656700eed51e42aa6f85170858506, type: 3}
+  Mject: {fileID: 659801617906265635, guid: d2e5cc63e93a7ec478d67012c0ee2b98, type: 3}
