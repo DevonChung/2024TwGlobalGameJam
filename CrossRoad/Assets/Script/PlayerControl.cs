@@ -330,6 +330,7 @@ public class PlayerControl : MonoBehaviour
         MyGameManager.instance.myUIManager.SetText("超派！！！");
         isChaoPie = true;
         CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
+        StartCoroutine(ChaoPieEffect());
         StartCoroutine(ResetPlayer("isChaoPie", 5.0f));
     }
     IEnumerator flyAway(Vector2 direction, GameObject obj)
@@ -351,6 +352,28 @@ public class PlayerControl : MonoBehaviour
         Vector2 direction = obj.transform.position - transform.position;
         MyGameManager.instance.AddMoney(10);
         StartCoroutine(flyAway(direction, obj));
+    }
+    IEnumerator ChaoPieEffect() {
+        // make the sprite shine like a rainbow
+        Color[] rainbowColors = new Color[] { Color.red, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta };
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        float transitionTime = 0.02f;
+        while (isChaoPie)
+        {
+            foreach (Color endColor in rainbowColors)
+            {
+                Color startColor = spriteRenderer.color;
+                float transitionRate = 0;
+
+                while (transitionRate < 1)
+                {
+                    spriteRenderer.color = Color.Lerp(startColor, endColor, transitionRate);
+                    transitionRate += Time.deltaTime / transitionTime;
+                    yield return null;
+                }
+            }
+        }
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

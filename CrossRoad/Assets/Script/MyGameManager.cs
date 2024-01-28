@@ -98,7 +98,7 @@ public class MyGameManager : MonoBehaviour
             currentEndingType = EndingType.Bad;
             ShowResultUI();
             AudioManager.instance.Clear();
-            AudioManager.instance.TimeOutAudio();
+            AudioManager.instance.PlayTimeOutAudio();
         }
     }
 
