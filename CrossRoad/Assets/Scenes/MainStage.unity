@@ -7656,6 +7656,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5969669051361287291, guid: 03f9ddd3f4e9744b6bf2d5f874bc8efb, type: 3}
     - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
+      propertyPath: WinAudio
+      value: 
+      objectReference: {fileID: 7185203145204108193, guid: 10f331a651b444eeb88a4066e5304c37, type: 3}
+    - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
       propertyPath: DrugAudio
       value: 
       objectReference: {fileID: 8268996936487127373, guid: dd59dc71ca3874fddbf380f3f7f635ca, type: 3}
@@ -7663,6 +7667,10 @@ PrefabInstance:
       propertyPath: GlueAudio
       value: 
       objectReference: {fileID: 8268996936487127373, guid: dd59dc71ca3874fddbf380f3f7f635ca, type: 3}
+    - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
+      propertyPath: ShoeAudio
+      value: 
+      objectReference: {fileID: 6077570274973857418, guid: 23acd5b433000492f814402272d1fce8, type: 3}
     - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
       propertyPath: MoneyAudio
       value: 
@@ -7679,6 +7687,10 @@ PrefabInstance:
       propertyPath: Monkey3Audio
       value: 
       objectReference: {fileID: 4517554751044902009, guid: 8b6aca2060ed049008f8c5bc83e70cef, type: 3}
+    - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
+      propertyPath: TimeOutAudio
+      value: 
+      objectReference: {fileID: 3675021097528795274, guid: 81516c8788df74c5da156bda3fc063e4, type: 3}
     - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
       propertyPath: PoliceStationAudio
       value: 
