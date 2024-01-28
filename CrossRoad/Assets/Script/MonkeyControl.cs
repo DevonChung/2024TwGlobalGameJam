@@ -43,7 +43,7 @@ public class MonkeyControl : MonoBehaviour
             isPlaying = isPlaying && audioObj != null;
             if (!isPlaying)
             {
-                audioObj = AudioManager.instance.PlayMonkeySound();
+                audioObj = AudioManager.instance.PlayMonkeyAudio();
                 isPlaying = true;
             }
         }

@@ -17,6 +17,8 @@ public class CarControl : MonoBehaviour
     public float sigmaResetSpeedTime = 5.0f;
     public float liveTime = 10.0f;
     public Vector3 direction = Vector3.right;
+    public Vector3 changeLaneDirection = Vector3.up;
+    private bool isChangingLane = false;
     public Tilemap tilemap;
 
     // Update is called once per frame
@@ -66,31 +68,115 @@ public class CarControl : MonoBehaviour
                 print(gameObject.name + " hit " + tileType);
                 switch (tileType)
                 {
-                    case "go_up":
+                    case "1": // up
                         StartCoroutine(Turn(Vector3.up));
                         // direction = Vector3.up;
                         break;
-                    case "go_down":
+                    case "2": // right
                         StartCoroutine(Turn(Vector3.down));
                         // direction = Vector3.down;
                         break;
-                    case "go_left":
+                    case "3": // down
                         StartCoroutine(Turn(Vector3.left));
                         // direction = Vector3.left;
                         break;
-                    case "go_right":
+                    case "4": // left
                         StartCoroutine(Turn(Vector3.right));
                         // direction = Vector3.right;
                         break;
-                    case "turn_up_or_left":
+                    case "5": // left or right
+                    case "7":
                         if (Random.Range(0, 2) == 0)
-                        {
                             direction = Vector3.left;
-                        }
                         else
-                        {
+                            direction = Vector3.right;
+                        break;
+                    case "6": // up or down
+                    case "8":
+                        if (Random.Range(0, 2) == 0)
                             direction = Vector3.up;
-                        }
+                        else
+                            direction = Vector3.down;
+                        break;
+                    case "21": // up or right
+                    case "26":
+                        if (Random.Range(0, 2) == 0)
+                            direction = Vector3.up;
+                        else
+                            direction = Vector3.right;
+                        break;
+                    case "22": // right or down
+                    case "27":
+                        if (Random.Range(0, 2) == 0)
+                            direction = Vector3.right;
+                        else
+                            direction = Vector3.down;
+                        break;
+                    case "23": // down or left
+                    case "28":
+                        if (Random.Range(0, 2) == 0)
+                            direction = Vector3.down;
+                        else
+                            direction = Vector3.left;
+                        break;
+                    case "24": // left or up
+                    case "25":
+                        if (Random.Range(0, 2) == 0)
+                            direction = Vector3.left;
+                        else
+                            direction = Vector3.up;
+                        break;
+                    case "9": // up or left or right
+                        int random = Random.Range(0, 3);
+                        if (random == 0)
+                            direction = Vector3.up;
+                        else if (random == 1)
+                            direction = Vector3.left;
+                        else
+                            direction = Vector3.right;
+                        break;
+                    case "10": // up or down or right
+                        random = Random.Range(0, 3);
+                        if (random == 0)
+                            direction = Vector3.up;
+                        else if (random == 1)
+                            direction = Vector3.down;
+                        else
+                            direction = Vector3.right;
+                        break;
+                    case "11": // down or left or right
+                        random = Random.Range(0, 3);
+                        if (random == 0)
+                            direction = Vector3.down;
+                        else if (random == 1)
+                            direction = Vector3.left;
+                        else
+                            direction = Vector3.right;
+                        break;
+                    case "12": // down or left or up
+                        random = Random.Range(0, 3);
+                        if (random == 0)
+                            direction = Vector3.down;
+                        else if (random == 1)
+                            direction = Vector3.left;
+                        else
+                            direction = Vector3.up;
+                        break;
+                    case "13": // right lane
+                    case "19":
+                        changeLaneDirection = Vector3.right;
+                        break;
+                    case "14": // down lane
+                    case "20":
+                        changeLaneDirection = Vector3.down;
+                        break;
+                    case "15": // left lane
+                    case "17":
+                        changeLaneDirection = Vector3.left;
+                        break;
+                    case "16": // up lane
+                    case "18":
+                        changeLaneDirection = Vector3.up;
                         break;
                     default:
                         break;
@@ -102,6 +188,12 @@ public class CarControl : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f / moveSpeed);
         direction = targetDirection;
+    }
+    IEnumerator ChangeLane()
+    {
+        isChangingLane = true;
+        yield return new WaitForSeconds(1.0f / moveSpeed);
+        isChangingLane = false;
     }
     void DetectTileAtPosition(Vector3 worldPosition)
     {
@@ -124,6 +216,10 @@ public class CarControl : MonoBehaviour
     void Move()
     {
         transform.Translate(direction * Time.deltaTime * moveSpeed);
+        if (isChangingLane)
+        {
+            transform.Translate(changeLaneDirection * Time.deltaTime * moveSpeed);
+        }
         liveTime -= Time.deltaTime;
         if (liveTime <= 0)
         {

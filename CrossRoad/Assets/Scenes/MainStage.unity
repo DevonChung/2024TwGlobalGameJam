@@ -6853,6 +6853,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8268996936487127373, guid: dd59dc71ca3874fddbf380f3f7f635ca, type: 3}
     - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
+      propertyPath: Monkey1Audio
+      value: 
+      objectReference: {fileID: 3436442021686504059, guid: 46e35d259c7ab4e5ca3ccce5b6ef51fc, type: 3}
+    - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
+      propertyPath: Monkey2Audio
+      value: 
+      objectReference: {fileID: 203413762531280099, guid: 6c40a9d24d04b40dd802af47c3baab44, type: 3}
+    - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
+      propertyPath: Monkey3Audio
+      value: 
+      objectReference: {fileID: 4517554751044902009, guid: 8b6aca2060ed049008f8c5bc83e70cef, type: 3}
+    - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
       propertyPath: PoliceStationAudio
       value: 
       objectReference: {fileID: 3655200648929649078, guid: e59e4017be8f04ae09ec4665f2e192ec, type: 3}
