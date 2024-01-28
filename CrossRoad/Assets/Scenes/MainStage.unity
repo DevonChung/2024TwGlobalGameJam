@@ -30209,7 +30209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7162656373768160790, guid: dd1d77492931edd428fd068f8b63ceca, type: 3}
       propertyPath: timeLeft
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7162656373768160790, guid: dd1d77492931edd428fd068f8b63ceca, type: 3}
       propertyPath: myUIManager
