@@ -33,7 +33,7 @@ public class MyGameManager : MonoBehaviour
             Hero.transform.position = StartPos.transform.position;
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     public EndingType GetEndingType()
@@ -46,11 +46,12 @@ public class MyGameManager : MonoBehaviour
         currentState = CrossRoadGameStatus.EndGame;
         if (CurrentMoney > 0)
         {
-            currentEndingType = EndingType.Good;
+            PlayerPrefs.SetInt("Ending", (int)EndingType.Good);
         }
         else
         {
-            currentEndingType = EndingType.Normal;
+            PlayerPrefs.SetInt("Ending", (int)EndingType.Normal);
+            //currentEndingType = EndingType.Normal;
         }
         ShowResultUI();
         AudioManager.instance.Clear();
@@ -95,7 +96,7 @@ public class MyGameManager : MonoBehaviour
             currentState = CrossRoadGameStatus.EndGame;
             myUIManager.SetText("Time is over");
             Time.timeScale = 0;
-            currentEndingType = EndingType.Bad;
+            PlayerPrefs.SetInt("Ending", (int)EndingType.Bad);
             ShowResultUI();
             AudioManager.instance.Clear();
             AudioManager.instance.PlayTimeOutAudio();

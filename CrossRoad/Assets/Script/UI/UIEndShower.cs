@@ -12,8 +12,8 @@ public class UIEndShower : UIShower
 
     private void Start()
     {
-
-        StartEnding(MyGameManager.instance.GetEndingType());
+        int iEndType = PlayerPrefs.GetInt("Ending");
+        StartEnding((EndingType)iEndType);
     }
 
     public void StartEnding(EndingType type)
