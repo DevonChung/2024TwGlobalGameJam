@@ -237,15 +237,19 @@ public class PlayerControl : MonoBehaviour
                 iscrash = false;
                 break;
             case "isdrug":
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
                 isdrug = false;
                 break;
             case "isUFO":
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
                 isUFO = false;
                 break;
             case "isShoe":
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
                 isShoe = false;
                 break;
             case "isChaoPie":
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
                 isChaoPie = false;
                 break;
             default:
@@ -285,21 +289,25 @@ public class PlayerControl : MonoBehaviour
     void drug() {
         print("drug");
         isdrug = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
         StartCoroutine(ResetPlayer("isdrug", 5.0f));
     }
     void UFO() {
         print("UFO");
         isUFO = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
         StartCoroutine(ResetPlayer("isUFO", 5.0f));
     }
     void Shoe() {
         print("Shoe");
         isShoe = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
         StartCoroutine(ResetPlayer("isShoe", 5.0f));
     }
     void ChaoPie() {
         print("ChaoPie");
         isChaoPie = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
         StartCoroutine(ResetPlayer("isChaoPie", 5.0f));
     }
     IEnumerator flyAway(Vector2 direction, GameObject obj) {
