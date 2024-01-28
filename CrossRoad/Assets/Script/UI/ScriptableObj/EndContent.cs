@@ -6,7 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EndContent",menuName = "EndContent")]
 public class EndContent : ScriptableObject
 {
-    public Sprite CG;
     
     public Dialog[] content;
     public Queue<Dialog> GetQueue()
@@ -22,6 +21,7 @@ public class EndContent : ScriptableObject
 [Serializable]
 public class Dialog
 {
+    public Sprite cg;
     public string _name;
     [TextArea(1, 3)]
     public string scentence;
