@@ -15,6 +15,10 @@ public class SceneTransistor : MonoBehaviour
     {
         animator.Play("FadeOut");
     }
+    public void FadeIn()
+    {
+        animator.Play("FadeIn");
+    }
     public void EndTransist()
     {
         OnEndTransist?.Invoke();
