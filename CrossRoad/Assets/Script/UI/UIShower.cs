@@ -11,6 +11,8 @@ public class UIShower : MonoBehaviour
     protected TextMeshProUGUI contentText,nameText;
     [SerializeField]
     protected float typeSpeed=10f;
+    [SerializeField]
+    protected AudioSource source;
     protected Queue<Dialog> plots;
 
     protected bool isShowingCG = false;
@@ -27,6 +29,8 @@ public class UIShower : MonoBehaviour
     }
     protected void ShowPlots(EndContent content)
     {
+        source.clip = content.bgm;
+        source.Play();
         plots = content.GetQueue();
         ShowNextScentence();
     }

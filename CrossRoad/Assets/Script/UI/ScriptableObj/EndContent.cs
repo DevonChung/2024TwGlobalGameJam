@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EndContent",menuName = "EndContent")]
 public class EndContent : ScriptableObject
 {
-    
+    public AudioClip bgm;
     public Dialog[] content;
     public Queue<Dialog> GetQueue()
     {

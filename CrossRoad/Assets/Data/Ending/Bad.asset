@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7820214d245185845b6767157d73831c, type: 3}
   m_Name: Bad
   m_EditorClassIdentifier: 
+  bgm: {fileID: 8300000, guid: 39d1378af65f80e4f833c662ee19e789, type: 3}
   content:
   - cg: {fileID: 21300000, guid: 9d3a6292819c4e744a1a749ddec0ad63, type: 3}
     _name: "\u65C1\u767D"

@@ -7,7 +7,7 @@ public class CharacterBuffUiManager : MonoBehaviour
 {
     public static CharacterBuffUiManager instance;
     public enum ExtraStatusType { 
-        Rice, Shoe, UFO, Drug
+        Rice, Shoe, UFO, Drug, Money
     };
     public GameObject statusIconManagerPrefab;
     protected int currentStatusCount = 0;
@@ -20,7 +20,8 @@ public class CharacterBuffUiManager : MonoBehaviour
     GameObject DrugObject;
     [SerializeField]
     GameObject UFOObject;
-  
+    [SerializeField]
+    GameObject MoneyObject;
 
     // Start is called before the first frame update
     void Start()
@@ -64,8 +65,13 @@ public class CharacterBuffUiManager : MonoBehaviour
         else if (add_status == ExtraStatusType.UFO)
         {
             gameObj = Instantiate(UFOObject, this.transform);
-        }     
-      
+        }
+        else if (add_status == ExtraStatusType.Money)
+        {
+            gameObj = Instantiate(MoneyObject, this.transform);
+        }
+
+
         player_status_list.Add(gameObj);
         LayoutStatusIcon();
     }
