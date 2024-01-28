@@ -32,11 +32,13 @@ public class UIShower : MonoBehaviour
     }
     protected void ShowNextScentence()
     {
+        
         if (plots.Count > 0)
         {
             typingPlot = plots.Dequeue();
             if(typingPlot != null)
             {
+                cg.color = Color.white;
                 cg.sprite = typingPlot.cg;
             }
             nameText.text = typingPlot._name;
