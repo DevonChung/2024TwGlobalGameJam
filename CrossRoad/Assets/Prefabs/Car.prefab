@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 7974501273256070040}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.42, y: -0.65, z: 0}
-  m_LocalScale: {x: 1.2, y: 0.8, z: 0}
+  m_LocalPosition: {x: -3.42, y: -0.65, z: 17.19}
+  m_LocalScale: {x: 1.2, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.2216981, g: 0.24841416, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a4bd7c064888f4b76be8068d71aec520, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.79, y: 0.78}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -144,6 +144,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  maxMoveSpeed: 5
+  minMoveSpeed: 1
+  meanMoveSpeed: 2
+  sigmaMoveSpeed: 5
+  resetSpeedTime: 3
+  maxResetSpeedTime: 6
+  minResetSpeedTime: 0
+  meanResetSpeedTime: 3
+  sigmaResetSpeedTime: 5
   liveTime: 30
   direction: {x: 1, y: 0, z: 0}
+  changeLaneDirection: {x: 0, y: 1, z: 0}
   tilemap: {fileID: 0}
+  carSprites:
+  - {fileID: 21300000, guid: a4bd7c064888f4b76be8068d71aec520, type: 3}
+  - {fileID: 21300000, guid: a95e35101b27e4a0e86be2b24def4c93, type: 3}
