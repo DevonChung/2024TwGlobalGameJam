@@ -43,10 +43,14 @@ public class PoliceStationBehavior : MonoBehaviour
             if (checkPlayerHasHoldMoney(playerControl) == true)
             {
                 MinusPlayerMoney(playerControl.get_thousand_money_number() * RewardPrice);
-                playerControl.ResetThousandMoneyNumber();
+                for (int i = 0; i < playerControl.get_thousand_money_number(); ++i)
+                {
+                    CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
+                }
                 MyGameManager.instance.myUIManager.SetText(ReturnMoneyMessage);
                 AudioManager.instance.PlayPoliceStationAudio();
-                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
+                
+                playerControl.ResetThousandMoneyNumber();
             }
         }
     }
@@ -61,9 +65,13 @@ public class PoliceStationBehavior : MonoBehaviour
             {
                 MinusPlayerMoney(playerControl.get_thousand_money_number() * FinePrice);
                 Debug.Log("detect trigger collision: check "+ playerControl.get_thousand_money_number());
-                playerControl.ResetThousandMoneyNumber();
+                for (int i = 0; i < playerControl.get_thousand_money_number(); ++i)
+                {
+                    CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
+                }
                 MyGameManager.instance.myUIManager.SetText(StealMoneyMessage);
                 CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
+                playerControl.ResetThousandMoneyNumber();
             }
         }
     }
