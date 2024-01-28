@@ -269,11 +269,11 @@ public class PlayerControl : MonoBehaviour
     void CarCrash()
     {
         print("CarCrash");
-        MyGameManager.instance.AddMoney(-20);
+        MyGameManager.instance.AddMoney(-50);
         if (currentTile == "crosswalk1" || currentTile == "crosswalk2")
         {
             MyGameManager.instance.myUIManager.SetText("未禮讓行人，罰款最高可達6000元");
-            MyGameManager.instance.AddMoney(+30);
+            MyGameManager.instance.AddMoney(+80);
         }
         // TODO
         iscrash = true;
@@ -321,6 +321,7 @@ public class PlayerControl : MonoBehaviour
         MyGameManager.instance.myUIManager.SetText("我的滑板鞋，時尚時尚最時尚，是魔鬼的步伐。");
         isShoe = true;
         CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
+        AudioManager.instance.PlayShoeAudio();
         StartCoroutine(ResetPlayer("isShoe", 5.0f));
     }
     void ChaoPie()
