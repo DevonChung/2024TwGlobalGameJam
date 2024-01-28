@@ -37,8 +37,11 @@ public class CarControl : MonoBehaviour
         }
         else
         {
-            moveSpeed = RandomGaussian(minMoveSpeed, maxMoveSpeed, meanMoveSpeed, sigmaMoveSpeed);
-            resetSpeedTime = RandomGaussian(minResetSpeedTime, maxResetSpeedTime, meanResetSpeedTime, sigmaResetSpeedTime);
+            if (!isTurning && !isChangingLane) {
+                moveSpeed = RandomGaussian(minMoveSpeed, maxMoveSpeed, meanMoveSpeed, sigmaMoveSpeed);
+                resetSpeedTime = RandomGaussian(minResetSpeedTime, maxResetSpeedTime, meanResetSpeedTime, sigmaResetSpeedTime);
+
+            }
         }
         CheckTurn();
         Move();
