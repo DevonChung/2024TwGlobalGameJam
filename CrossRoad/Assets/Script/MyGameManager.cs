@@ -53,6 +53,8 @@ public class MyGameManager : MonoBehaviour
             currentEndingType = EndingType.Normal;
         }
         ShowResultUI();
+        AudioManager.instance.Clear();
+        AudioManager.instance.PlayWinAudio();
         Time.timeScale = 0;
     }
 
@@ -95,6 +97,8 @@ public class MyGameManager : MonoBehaviour
             Time.timeScale = 0;
             currentEndingType = EndingType.Bad;
             ShowResultUI();
+            AudioManager.instance.Clear();
+            AudioManager.instance.TimeOutAudio();
         }
     }
 

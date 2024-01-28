@@ -33,7 +33,11 @@ public class AudioManager : MonoBehaviour
         audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }
-
+    public void Clear() {
+        foreach (Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+    }
     public void PlayBgm()
     {
         Instantiate(Bgm, transform);
