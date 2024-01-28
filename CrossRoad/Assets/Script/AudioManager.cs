@@ -40,47 +40,48 @@ public class AudioManager : MonoBehaviour
 
     public GameObject PlayPoliceStationAudio()
     {
-        GameObject audioObject = Instantiate(PoliceStationAudio, transform);
+        GameObject audioObj = Instantiate(PoliceStationAudio, transform);
         audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }
     public GameObject PlayUfoAudio()
     {
-        GameObject audioObject = Instantiate(UfoAudio, transform);
-        audioObject.AddComponent<AutoDestroyAudio>();
+        GameObject audioObj = Instantiate(UfoAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }
     public GameObject PlayAcAudio()
     {
-        GameObject audioObject = Instantiate(AcAudio, transform);
-        audioObject.AddComponent<AutoDestroyAudio>();
+        GameObject audioObj = Instantiate(AcAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }
     public void PlayDrugAudio()
     {
-        GameObject audioObject = Instantiate(DrugAudio, transform);
-        StartCoroutine(StopAudio(5.0f,audioObject));
+        GameObject audioObj = Instantiate(DrugAudio, transform);
+        StartCoroutine(StopAudio(5.0f, audioObj));
     }
     public GameObject PlayMonkeyAudio()
     {
         int randomIndex = Random.Range(0, 3);
+        GameObject audioObj;
         switch (randomIndex)
         {
             case 0:
-                GameObject audioObject = Instantiate(Monkey1Audio, transform);
-                audioObject.AddComponent<AutoDestroyAudio>();
+                audioObj = Instantiate(Monkey1Audio, transform);
+                audioObj.AddComponent<AutoDestroyAudio>();
                 break;
             case 1:
-                GameObject audioObject = Instantiate(Monkey2Audio, transform);
-                audioObject.AddComponent<AutoDestroyAudio>();
+                audioObj = Instantiate(Monkey2Audio, transform);
+                audioObj.AddComponent<AutoDestroyAudio>();
                 break;
             case 2:
-                GameObject audioObject = Instantiate(Monkey3Audio, transform);
-                audioObject.AddComponent<AutoDestroyAudio>();
+                audioObj = Instantiate(Monkey3Audio, transform);
+                audioObj.AddComponent<AutoDestroyAudio>();
                 break;
             default:
-                GameObject audioObject = Instantiate(Monkey1Audio, transform);
-                audioObject.AddComponent<AutoDestroyAudio>();
+                audioObj = Instantiate(Monkey1Audio, transform);
+                audioObj.AddComponent<AutoDestroyAudio>();
                 break;
         }
         return audioObj;
