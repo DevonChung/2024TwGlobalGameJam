@@ -25,6 +25,8 @@ public class UIReadyGo : MonoBehaviour
     }
     IEnumerator StartReadyGoCoroutine(float readyTime,float goTime)
     {
+        AudioManager.instance.PlayBgm();
+
         ReadyGoText.text = "Ready...";
         yield return new WaitForSecondsRealtime(readyTime);
         ReadyGoText.text = "GO!";
