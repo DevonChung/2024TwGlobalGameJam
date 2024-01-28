@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public GameObject Monkey1Audio;
     public GameObject Monkey2Audio;
     public GameObject Monkey3Audio;
+    public GameObject MoneyAudio;
 
     void Awake()
     {
@@ -84,6 +85,12 @@ public class AudioManager : MonoBehaviour
                 audioObj.AddComponent<AutoDestroyAudio>();
                 break;
         }
+        return audioObj;
+    }
+    public GameObject PlayMoneyAudio()
+    {
+        GameObject audioObj = Instantiate(MoneyAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }
 }
