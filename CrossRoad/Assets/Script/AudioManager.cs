@@ -15,6 +15,9 @@ public class AudioManager : MonoBehaviour
     public GameObject Monkey2Audio;
     public GameObject Monkey3Audio;
     public GameObject MoneyAudio;
+    public GameObject TimeOutAudio;
+    public GameObject WinAudio;
+    public GameObject ShoeAudio;
 
     void Awake()
     {
@@ -94,6 +97,24 @@ public class AudioManager : MonoBehaviour
     public GameObject PlayMoneyAudio()
     {
         GameObject audioObj = Instantiate(MoneyAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
+        return audioObj;
+    }
+    public GameObject PlayTimeOutAudio()
+    {
+        GameObject audioObj = Instantiate(TimeOutAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
+        return audioObj;
+    }
+    public GameObject PlayWinAudio()
+    {
+        GameObject audioObj = Instantiate(WinAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
+        return audioObj;
+    }
+    public GameObject PlayShoeAudio()
+    {
+        GameObject audioObj = Instantiate(ShoeAudio, transform);
         audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }
