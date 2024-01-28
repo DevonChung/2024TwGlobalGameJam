@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class UITitle : MonoBehaviour
 {
+    SceneTransistor transistor;
     public void GameStart()
     {
-        SceneManager.LoadScene("StartingAnimation");
+        transistor = FindObjectOfType<SceneTransistor>();
+        transistor.OnEndTransist.AddListener(delegate { SceneManager.LoadScene("StartingAnimation"); });
+        transistor.FadeOut();
+        //SceneManager.LoadScene("StartingAnimation");
     }
     public void Quit()
     {
