@@ -12,15 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7820214d245185845b6767157d73831c, type: 3}
   m_Name: Start
   m_EditorClassIdentifier: 
-  CG: {fileID: 0}
+  bgm: {fileID: 8300000, guid: 01f2b8fbeb3a12c4990a27d93ca4d43c, type: 3}
   content:
-  - _name: "\u5C0F\u7F8E"
+  - cg: {fileID: 0}
+    _name: "\u5C0F\u7F8E"
     scentence: "\u5BF6\u8C9D\uFF0C\u6211\u5BB6\u4ECA\u5929\u6C92\u4EBA~\r"
-  - _name: "\u5C0F\u5E25"
+  - cg: {fileID: 0}
+    _name: "\u5C0F\u5E25"
     scentence: "\uFF01\uFF01\uFF01"
-  - _name: "\u5C0F\u5E25"
+  - cg: {fileID: 0}
+    _name: "\u5C0F\u5E25"
     scentence: "\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01"
-  - _name: "\u5C0F\u5E25"
+  - cg: {fileID: 0}
+    _name: "\u5C0F\u5E25"
     scentence: "\u6211\u99AC\u4E0A\u904E\u53BB\uFF01"
-  - _name: "\u65C1\u767D"
+  - cg: {fileID: 0}
+    _name: "\u65C1\u767D"
     scentence: "\uFF08\u5C0F\u5E25\u5145\u6EFF\u5E0C\u671B\u7684\u885D\u5411\u5973\u53CB\u5BB6\uFF0C\u4F46\u4ED6\u4E0D\u77E5\u9053\u7684\u662F\uFF0C\u7B49\u5F85\u4ED6\u7684\u662F\u5371\u6A5F\u56DB\u4F0F\u7684\u81FA\u7063\u8857\u9053\u2026\uFF09"

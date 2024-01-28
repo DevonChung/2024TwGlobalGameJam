@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     public float debug_center_y = 1.5f;
     public float moveSpeed = 5.0f;
     public float crashTime = 1.5f;
+    public float AcTime = 5.0f;
     protected int thousand_money_number = 0;
 
     public GameObject ACPrefab;
@@ -185,7 +186,7 @@ public class PlayerControl : MonoBehaviour
         if (currentTile == "sidewalk")
         {
             ACComming += Time.deltaTime;
-            if (ACComming > 10.0f)
+            if (ACComming > AcTime)
             {
                 ACFall();
                 ACComming = 0.0f;
@@ -231,6 +232,7 @@ public class PlayerControl : MonoBehaviour
     void AddMoney()
     {
         print("GetMoney");
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
         thousand_money_number++;
         MyGameManager.instance.AddMoney(1000);
         AudioManager.instance.PlayMoneyAudio();
@@ -330,6 +332,7 @@ public class PlayerControl : MonoBehaviour
         MyGameManager.instance.myUIManager.SetText("超派！！！");
         isChaoPie = true;
         CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
+        AudioManager.instance.PlaySuperPieAudio();
         StartCoroutine(ChaoPieEffect());
         StartCoroutine(ResetPlayer("isChaoPie", 5.0f));
     }
@@ -351,6 +354,7 @@ public class PlayerControl : MonoBehaviour
         obj.GetComponent<BoxCollider2D>().enabled = false;
         Vector2 direction = obj.transform.position - transform.position;
         MyGameManager.instance.AddMoney(10);
+        AudioManager.instance.PlaySuperPieAudio();
         StartCoroutine(flyAway(direction, obj));
     }
     IEnumerator ChaoPieEffect() {

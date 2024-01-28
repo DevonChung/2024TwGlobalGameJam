@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public GameObject TimeOutAudio;
     public GameObject WinAudio;
     public GameObject ShoeAudio;
+    public GameObject SuperPieAudio;
 
     void Awake()
     {
@@ -37,9 +38,12 @@ public class AudioManager : MonoBehaviour
         return audioObj;
     }
     public void Clear() {
-        foreach (Transform child in transform) {
+        foreach(Transform child in transform) {
             Destroy(child.gameObject);
         }
+        // for (int i = 0; i < transform.childCount; i++) {
+        //     Destroy(transform.getChild(0));
+        // }
     }
     public void PlayBgm()
     {
@@ -115,6 +119,12 @@ public class AudioManager : MonoBehaviour
     public GameObject PlayShoeAudio()
     {
         GameObject audioObj = Instantiate(ShoeAudio, transform);
+        audioObj.AddComponent<AutoDestroyAudio>();
+        return audioObj;
+    }
+    public GameObject PlaySuperPieAudio()
+    {
+        GameObject audioObj = Instantiate(SuperPieAudio, transform);
         audioObj.AddComponent<AutoDestroyAudio>();
         return audioObj;
     }

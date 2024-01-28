@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7820214d245185845b6767157d73831c, type: 3}
   m_Name: Normal
   m_EditorClassIdentifier: 
-  CG: {fileID: 0}
+  bgm: {fileID: 8300000, guid: 34dcc57473c9f694ab1c9aa0f343de06, type: 3}
   content:
-  - _name: "\u65C1\u767D"
+  - cg: {fileID: 21300000, guid: 81c26668035d65a43b1a40236538dece, type: 3}
+    _name: "\u65C1\u767D"
     scentence: "\uFF08\u5C0F\u5E25\u62B5\u9054\u5C0F\u7F8E\u5BB6\uFF09"
-  - _name: "\u65C1\u767D"
+  - cg: {fileID: 21300000, guid: 81c26668035d65a43b1a40236538dece, type: 3}
+    _name: "\u65C1\u767D"
     scentence: "\u770B\u5230\u5C0F\u5E25\u8863\u670D\u7834\u721B\u7684\u6A23\u5B50\uFF0C\u5C0F\u7F8E\u5167\u5FC3\u5145\u6EFF\u4E0D\u6368\u3002"
-  - _name: "\u5C0F\u5E25"
+  - cg: {fileID: 21300000, guid: 81c26668035d65a43b1a40236538dece, type: 3}
+    _name: "\u5C0F\u5E25"
     scentence: "\u9019\u88E1\uFF0C\u5DF2\u7D93\u6C92\u6709\u6211\u5011\u7684\u5BB9\u8EAB\u4E4B\u8655\u4E86\uFF0C\u6211\u5011\uFF0C\u96E2\u958B\u9019\u88E1\u5427\u3002"
-  - _name: "\u65C1\u767D"
+  - cg: {fileID: 21300000, guid: 81c26668035d65a43b1a40236538dece, type: 3}
+    _name: "\u65C1\u767D"
     scentence: "\u62CB\u4E0B\u4E00\u5207\uFF0C\u5C0F\u7F8E\u548C\u5C0F\u5E25\u5230\u7121\u4EBA\u8352\u5CF6\u4E0A\u904E\u8457\u5E78\u798F\u5FEB\u6A02\u7684\u751F\u6D3B\u3002"
