@@ -27,7 +27,6 @@ public class UIShower : MonoBehaviour
     }
     protected void ShowPlots(EndContent content)
     {
-        cg.sprite = content.CG;
         plots = content.GetQueue();
         ShowNextScentence();
     }
@@ -36,6 +35,10 @@ public class UIShower : MonoBehaviour
         if (plots.Count > 0)
         {
             typingPlot = plots.Dequeue();
+            if(typingPlot != null)
+            {
+                cg.sprite = typingPlot.cg;
+            }
             nameText.text = typingPlot._name;
             StartCoroutine(TypingWords(typingPlot.scentence));
         }

@@ -14,7 +14,7 @@ public class MyGameManager : MonoBehaviour
     public CrossRoadGameStatus currentState = CrossRoadGameStatus.Paused;
     public GameObject StartPos;
     protected GameObject Hero;
-    
+    private EndingType currentEndingType = EndingType.Normal;
     public UIManager myUIManager;
 
     // Start is called before the first frame update
@@ -32,11 +32,26 @@ public class MyGameManager : MonoBehaviour
         { 
             Hero.transform.position = StartPos.transform.position;
         }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    public EndingType GetEndingType()
+    {
+        return currentEndingType;
     }
 
     public void ReachEndLine()
     {
         currentState = CrossRoadGameStatus.EndGame;
+        if (CurrentMoney > 0)
+        {
+            currentEndingType = EndingType.Good;
+        }
+        else
+        {
+            currentEndingType = EndingType.Normal;
+        }
         ShowResultUI();
         Time.timeScale = 0;
     }
@@ -77,6 +92,8 @@ public class MyGameManager : MonoBehaviour
         {
             currentState = CrossRoadGameStatus.EndGame;
             myUIManager.SetText("Time is over");
+            Time.timeScale = 0;
+            currentEndingType = EndingType.Bad;
             ShowResultUI();
         }
     }
