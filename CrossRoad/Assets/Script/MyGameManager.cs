@@ -14,7 +14,7 @@ public class MyGameManager : MonoBehaviour
     public CrossRoadGameStatus currentState = CrossRoadGameStatus.Paused;
     public GameObject StartPos;
     protected GameObject Hero;
-
+    
     public UIManager myUIManager;
 
     // Start is called before the first frame update
