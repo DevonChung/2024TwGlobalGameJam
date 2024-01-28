@@ -10,6 +10,12 @@ public class UIEndShower : UIShower
     [SerializeField]
     EndContent GoodContent, NormalContent, BadContent;
 
+    private void Start()
+    {
+
+        StartEnding(MyGameManager.instance.GetEndingType());
+    }
+
     public void StartEnding(EndingType type)
     {
         isShowingCG = true;
