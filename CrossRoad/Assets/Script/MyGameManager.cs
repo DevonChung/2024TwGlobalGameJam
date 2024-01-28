@@ -38,11 +38,13 @@ public class MyGameManager : MonoBehaviour
     {
         currentState = CrossRoadGameStatus.EndGame;
         ShowResultUI();
+        Time.timeScale = 0;
     }
 
     public void StartGame()
     {
         currentState = CrossRoadGameStatus.InGame;
+        Time.timeScale = 1;
     }
 
     public void AddMoney(int amount)

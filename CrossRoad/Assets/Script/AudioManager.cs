@@ -11,8 +11,9 @@ public class AudioManager : MonoBehaviour
         instance = this;
     }
     
-    public void PlayCrashAudio()
+    public GameObject PlayCrashAudio()
     {
-        Instantiate(CracrashAudio, transform);
+        GameObje audioObj = Instantiate(CracrashAudio, transform);
+        aud;
     }
 }
