@@ -21,7 +21,7 @@ public class UIShower : MonoBehaviour
     protected void Update()
     {
         if (!isShowingCG) return;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)||Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Z))
         {
             if (!isTyping) ShowNextScentence();
             else ShowAllText();
