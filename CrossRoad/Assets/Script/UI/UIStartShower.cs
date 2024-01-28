@@ -21,6 +21,8 @@ public class UIStartShower : UIShower
     }
     private void Start()
     {
-        StartStarting();
+        SceneTransistor transistor = FindObjectOfType<SceneTransistor>();
+        transistor.OnEndTransist.AddListener(StartStarting);
+        transistor.FadeIn();
     }
 }
