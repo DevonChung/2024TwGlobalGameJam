@@ -246,15 +246,19 @@ public class PlayerControl : MonoBehaviour
                 break;
             case "isdrug":
                 isdrug = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
                 break;
             case "isUFO":
                 isUFO = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
                 break;
             case "isShoe":
                 isShoe = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
                 break;
             case "isChaoPie":
                 isChaoPie = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
                 break;
             default:
                 break;
@@ -294,6 +298,7 @@ public class PlayerControl : MonoBehaviour
     {
         print("drug");
         isdrug = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
         AudioManager.instance.PlayDrugAudio();
         StartCoroutine(ResetPlayer("isdrug", 5.0f));
     }
@@ -301,6 +306,7 @@ public class PlayerControl : MonoBehaviour
     {
         print("UFO");
         isUFO = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
         AudioManager.instance.PlayUfoAudio();
         StartCoroutine(ResetPlayer("isUFO", 5.0f));
     }
@@ -308,12 +314,14 @@ public class PlayerControl : MonoBehaviour
     {
         print("Shoe");
         isShoe = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
         StartCoroutine(ResetPlayer("isShoe", 5.0f));
     }
     void ChaoPie()
     {
         print("ChaoPie");
         isChaoPie = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
         StartCoroutine(ResetPlayer("isChaoPie", 5.0f));
     }
     IEnumerator flyAway(Vector2 direction, GameObject obj)
