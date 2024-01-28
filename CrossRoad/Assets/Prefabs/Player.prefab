@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0.019238546, y: -0.8464464, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 7218682094889810413}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6702753873096859586
@@ -198,3 +199,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6821761329107213585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7218682094889810413}
+  - component: {fileID: 9116316214908009024}
+  m_Layer: 0
+  m_Name: StatusIconList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7218682094889810413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821761329107213585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2972678072994484802}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9116316214908009024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821761329107213585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0095b92bb12823b478f00989d92d54bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusIconManagerPrefab: {fileID: 4501501519050605476, guid: d0b330a48571dde45a8e008fd9545bda, type: 3}
+  RiceObject: {fileID: 3809819303963783358, guid: 64b43c44237e2f74e9157bf512458609, type: 3}
+  ShoeObject: {fileID: 2950793645922354387, guid: d967a99504048b24cbef553a35022f32, type: 3}
+  DrugObject: {fileID: 4252290953937458245, guid: 6b5066cbd6f43e04e86e92c8dd524569, type: 3}
+  UFOObject: {fileID: 319010760899936994, guid: f44656700eed51e42aa6f85170858506, type: 3}

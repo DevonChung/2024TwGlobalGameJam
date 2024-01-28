@@ -14,7 +14,10 @@ public class UIStartShower : UIShower
     }
     protected override void EndEnding()
     {
-        SceneManager.LoadScene("MainStage");
+        SceneTransistor transistor = FindObjectOfType<SceneTransistor>();
+        transistor.OnEndTransist.AddListener(delegate { SceneManager.LoadScene("MainStage"); });
+        transistor.FadeOut();
+        
     }
     private void Start()
     {

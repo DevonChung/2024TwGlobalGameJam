@@ -203,6 +203,7 @@ public class PlayerControl : MonoBehaviour
     {
 
         print("ACFall");
+        MyGameManager.instance.myUIManager.SetText("人在路上走，冷氣從天降。");
         GameObject AC = Instantiate(ACPrefab, transform);
         AC.transform.localPosition = new Vector3(0, 9, -10);
         AC.transform.localScale = new Vector3(2, 2, 2);
@@ -247,15 +248,19 @@ public class PlayerControl : MonoBehaviour
                 break;
             case "isdrug":
                 isdrug = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
                 break;
             case "isUFO":
                 isUFO = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
                 break;
             case "isShoe":
                 isShoe = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
                 break;
             case "isChaoPie":
                 isChaoPie = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
                 break;
             default:
                 break;
@@ -267,6 +272,7 @@ public class PlayerControl : MonoBehaviour
         MyGameManager.instance.AddMoney(-20);
         if (currentTile == "crosswalk1" || currentTile == "crosswalk2")
         {
+            MyGameManager.instance.myUIManager.SetText("未禮讓行人，罰款最高可達6000元");
             MyGameManager.instance.AddMoney(+30);
         }
         // TODO
@@ -294,27 +300,35 @@ public class PlayerControl : MonoBehaviour
     void drug()
     {
         print("drug");
+        MyGameManager.instance.myUIManager.SetText("謀吧啦，拔嘎nono，拔say拔say");
         isdrug = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
         AudioManager.instance.PlayDrugAudio();
         StartCoroutine(ResetPlayer("isdrug", 5.0f));
     }
     void UFO()
     {
         print("UFO");
+        MyGameManager.instance.myUIManager.SetText("欸！有飛碟！");
         isUFO = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
         AudioManager.instance.PlayUfoAudio();
         StartCoroutine(ResetPlayer("isUFO", 5.0f));
     }
     void Shoe()
     {
         print("Shoe");
+        MyGameManager.instance.myUIManager.SetText("我的滑板鞋，時尚時尚最時尚，是魔鬼的步伐。");
         isShoe = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
         StartCoroutine(ResetPlayer("isShoe", 5.0f));
     }
     void ChaoPie()
     {
         print("ChaoPie");
+        MyGameManager.instance.myUIManager.SetText("超派！！！");
         isChaoPie = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
         StartCoroutine(ResetPlayer("isChaoPie", 5.0f));
     }
     IEnumerator flyAway(Vector2 direction, GameObject obj)
@@ -385,6 +399,11 @@ public class PlayerControl : MonoBehaviour
             switch (collision.gameObject.tag)
             {
                 case "Car":
+                    MyGameManager.instance.myUIManager.SetText("走路不看路，亂穿馬路，你是猴子派來的嗎？");
+                    CarCrash();
+                    break;
+                case "Monkey":
+                    MyGameManager.instance.myUIManager.SetText("哪裡來的猴子啊！？");
                     CarCrash();
                     break;
                 default:
