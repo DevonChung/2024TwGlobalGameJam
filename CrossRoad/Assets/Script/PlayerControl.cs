@@ -232,6 +232,7 @@ public class PlayerControl : MonoBehaviour
         print("GetMoney");
         thousand_money_number++;
         MyGameManager.instance.AddMoney(1000);
+        AudioManager.instance.PlayMoneyAudio();
         // TODO
     }
     IEnumerator ResetPlayer(string status, float duration)
