@@ -360,7 +360,7 @@ public class PlayerControl : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Money":
-                MyGameManager.instance.myUIManager.SetText("超爽der！撿到1000塊勒～")
+                MyGameManager.instance.myUIManager.SetText("超爽der！撿到1000塊勒～");
                 AddMoney();
                 Destroy(collision.gameObject);
                 return;

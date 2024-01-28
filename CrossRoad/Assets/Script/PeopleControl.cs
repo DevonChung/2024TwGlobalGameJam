@@ -35,11 +35,11 @@ public class PeopleControl : MonoBehaviour
         duration = Random.Range(1.0f, 3.0f);
 
         // Set a random target scale between 0.5f and 5.0f
-        float scale = Random.Range(0.5f, 5.0f);
+        float scale = Random.Range(0.5f, 3.0f);
         targetScale = new Vector3(scale, transform.localScale.y, transform.localScale.z);
 
         // Set the target position such that x is 1 + scale / 2
-        targetPosition = new Vector3(1 + scale / 2, transform.localPosition.y, transform.localPosition.z);
+        targetPosition = new Vector3(scale / 2, transform.localPosition.y, transform.localPosition.z);
         ds = (scale - transform.localScale.x) / duration;
         dx = (targetPosition.x - transform.localPosition.x) / duration;
         lastTime = duration;
