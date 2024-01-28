@@ -30,10 +30,6 @@ public class UIEndShower : UIShower
     {
         SceneManager.LoadScene("Title");
     }
-    private void Start()
-    {
-        StartEnding(EndingType.Good);
-    }
 }
 public enum EndingType
 {
