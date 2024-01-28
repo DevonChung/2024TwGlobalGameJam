@@ -247,15 +247,19 @@ public class PlayerControl : MonoBehaviour
                 break;
             case "isdrug":
                 isdrug = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
                 break;
             case "isUFO":
                 isUFO = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
                 break;
             case "isShoe":
                 isShoe = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
                 break;
             case "isChaoPie":
                 isChaoPie = false;
+                CharacterBuffUiManager.instance.DelStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
                 break;
             default:
                 break;
@@ -297,6 +301,7 @@ public class PlayerControl : MonoBehaviour
         print("drug");
         MyGameManager.instance.myUIManager.SetText("謀吧啦，拔嘎nono，拔say拔say");
         isdrug = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Drug);
         AudioManager.instance.PlayDrugAudio();
         StartCoroutine(ResetPlayer("isdrug", 5.0f));
     }
@@ -305,6 +310,7 @@ public class PlayerControl : MonoBehaviour
         print("UFO");
         MyGameManager.instance.myUIManager.SetText("欸！有飛碟！");
         isUFO = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.UFO);
         AudioManager.instance.PlayUfoAudio();
         StartCoroutine(ResetPlayer("isUFO", 5.0f));
     }
@@ -313,6 +319,7 @@ public class PlayerControl : MonoBehaviour
         print("Shoe");
         MyGameManager.instance.myUIManager.SetText("我的滑板鞋，時尚時尚最時尚，是魔鬼的步伐。");
         isShoe = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Shoe);
         StartCoroutine(ResetPlayer("isShoe", 5.0f));
     }
     void ChaoPie()
@@ -320,6 +327,7 @@ public class PlayerControl : MonoBehaviour
         print("ChaoPie");
         MyGameManager.instance.myUIManager.SetText("超派！！！");
         isChaoPie = true;
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Rice);
         StartCoroutine(ResetPlayer("isChaoPie", 5.0f));
     }
     IEnumerator flyAway(Vector2 direction, GameObject obj)
