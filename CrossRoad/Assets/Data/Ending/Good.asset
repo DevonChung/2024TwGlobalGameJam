@@ -14,7 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CG: {fileID: 0}
   content:
+  - _name: "\u65C1\u767D"
+    scentence: "\uFF08\u5C0F\u5E25\u62B5\u9054\u5C0F\u7F8E\u5BB6\uFF09\r"
+  - _name: "\u5C0F\u5E25"
+    scentence: "\u563F\u563F\u563F\uFF0C\u5C0F\u7F8E\u6211\u4F86\u4E86\uFF01"
+  - _name: "\u65C1\u767D"
+    scentence: "\u56DE\u61C9\u5C0F\u5E25\u7684\u662F\u7A7A\u7121\u4E00\u4EBA\u7684\u5BC2\u975C"
+  - _name: "\u5C0F\u5E25"
+    scentence: "\uFF08\u6253\u96FB\u8A71\u7D66\u5C0F\u7F8E\uFF09"
+  - _name: "\u5C0F\u5E25"
+    scentence: "\u5C0F\u7F8E\u4F60\u4EBA\u5462\uFF1F"
   - _name: "\u5C0F\u7F8E"
-    scentence: "\u4F60\u7684\u9322\u8DDF\u4F60\u597D\u5E25\u5594\u3002"
-  - _name: "\u5C0F\u7F8E"
-    scentence: "\u90A3\u6211\u5011\u958B\u59CB\u5427\uFF01"
+    scentence: "\u6211\u8AAA\u6211\u5BB6\u4ECA\u5929\u6C92\u4EBA\u554A\uFF01\u771F\u7684\u6C92\u4EBA~\u563B\u563B^_^"
+  - _name: "\u5C0F\u5E25"
+    scentence: "=\u53E3=|||"
