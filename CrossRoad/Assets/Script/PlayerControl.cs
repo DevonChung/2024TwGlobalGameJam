@@ -231,6 +231,7 @@ public class PlayerControl : MonoBehaviour
     void AddMoney()
     {
         print("GetMoney");
+        CharacterBuffUiManager.instance.AddStatusIcon(CharacterBuffUiManager.ExtraStatusType.Money);
         thousand_money_number++;
         MyGameManager.instance.AddMoney(1000);
         AudioManager.instance.PlayMoneyAudio();
