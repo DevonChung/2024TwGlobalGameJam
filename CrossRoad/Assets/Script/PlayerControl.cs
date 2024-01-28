@@ -341,6 +341,7 @@ public class PlayerControl : MonoBehaviour
         audioManager.PlayCrashAudio();
         obj.GetComponent<BoxCollider2D>().enabled = false;
         Vector2 direction = obj.transform.position - transform.position;
+        MyGameManager.instance.AddMoney(10);
         StartCoroutine(flyAway(direction, obj));
     }
     private void OnTriggerEnter2D(Collider2D collision)

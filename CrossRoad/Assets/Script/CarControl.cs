@@ -21,6 +21,7 @@ public class CarControl : MonoBehaviour
     private bool isTurning = false;
     private bool isChangingLane = false;
     public Tilemap tilemap;
+    public Sprite[] carSprites;
 
     // Update is called once per frame
     void Start()
@@ -255,6 +256,31 @@ public class CarControl : MonoBehaviour
     IEnumerator Turn(Vector3 targetDirection)
     {
         yield return new WaitForSeconds(0.5f / moveSpeed);
+
+        if (targetDirection == Vector3.up)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = carSprites[1];
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            gameObject.GetComponent<SpriteRenderer>().flipY = false;
+        }
+        else if (targetDirection == Vector3.down)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = carSprites[1];
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            gameObject.GetComponent<SpriteRenderer>().flipY = true;
+        }
+        else if (targetDirection == Vector3.left)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = carSprites[0];
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            gameObject.GetComponent<SpriteRenderer>().flipY = false;
+        }
+        else if (targetDirection == Vector3.right)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = carSprites[0];
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            gameObject.GetComponent<SpriteRenderer>().flipY = false;
+        }
         direction = targetDirection;
         isTurning = false;
     }
