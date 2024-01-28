@@ -31,6 +31,7 @@ public class MonkeyControl : MonoBehaviour
     }
     void Update()
     {
+        if (MyGameManager.instance.currentState != MyGameManager.CrossRoadGameStatus.InGame) return;
         time += Time.deltaTime;
         if (time > lifetime)
         {

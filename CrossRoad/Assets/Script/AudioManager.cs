@@ -37,9 +37,12 @@ public class AudioManager : MonoBehaviour
         return audioObj;
     }
     public void Clear() {
-        foreach (Transform child in transform) {
+        foreach(Transform child in transform) {
             Destroy(child.gameObject);
         }
+        // for (int i = 0; i < transform.childCount; i++) {
+        //     Destroy(transform.getChild(0));
+        // }
     }
     public void PlayBgm()
     {
