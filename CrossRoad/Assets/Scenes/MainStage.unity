@@ -7692,6 +7692,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3675021097528795274, guid: 81516c8788df74c5da156bda3fc063e4, type: 3}
     - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
+      propertyPath: SuperPieAudio
+      value: 
+      objectReference: {fileID: 926345570225829181, guid: 4075e433b3cab4f60b0eea6768fe2f5d, type: 3}
+    - target: {fileID: 8647194988566997197, guid: 14bfa8e78df2142c9b1f99e064d42eb0, type: 3}
       propertyPath: PoliceStationAudio
       value: 
       objectReference: {fileID: 3655200648929649078, guid: e59e4017be8f04ae09ec4665f2e192ec, type: 3}
@@ -28862,6 +28866,10 @@ PrefabInstance:
     - target: {fileID: 2972678072994484802, guid: 1e9b32d81a76b42e08f4336e71fef8f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419017444826227107, guid: 1e9b32d81a76b42e08f4336e71fef8f0, type: 3}
+      propertyPath: AcTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3419017444826227107, guid: 1e9b32d81a76b42e08f4336e71fef8f0, type: 3}
       propertyPath: ACPrefab
