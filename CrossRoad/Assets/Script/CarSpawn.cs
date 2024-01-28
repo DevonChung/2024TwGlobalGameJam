@@ -18,7 +18,7 @@ public class CarSpawn : MonoBehaviour
         // spawnTime will be random
         while (true)
         {
-            spawnTime = RandomGaussian(0.0f, 5.0f);
+            spawnTime = RandomGaussian(0.0f, 8.0f);
             yield return new WaitForSeconds(spawnTime);
             Instantiate(carPrefab, spawnPoint.position, spawnPoint.rotation);
         }
